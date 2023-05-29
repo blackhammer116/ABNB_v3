@@ -58,6 +58,12 @@ class DBStorage:
     def save(self):
         """commit all changes of the current database session"""
         self.__session.commit()
+    
+    def get(self, cls, id):
+        """getting the requested object based on the class and id"""
+       return (self.__session.execute("SELECT * FROM {} WHERE id={}".
+                                       format(cls, id)))
+
 
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
